@@ -5,6 +5,7 @@ const createPost = async (postData: IPost): Promise<IPost> => {
   const createPost = (await Post.create(postData)).populate('user');
   return createPost;
 };
+
 export const PostService = {
   createPost,
 };
