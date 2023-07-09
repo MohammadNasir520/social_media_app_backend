@@ -8,8 +8,8 @@ const createComment = async (CommentData: IComment): Promise<IComment> => {
   return createComment;
 };
 
-const getAllComments = async () => {
-  const result = await Comment.find()
+const getAllCommentsOfSinglePost = async (postId: string) => {
+  const result = await Comment.find({ post: postId })
     .sort({ createdAt: -1 })
     .populate('user')
     .populate('post');
@@ -26,6 +26,6 @@ const getSingleComment = async (id: string) => {
 };
 export const CommentService = {
   createComment,
-  getAllComments,
+  getAllCommentsOfSinglePost,
   getSingleComment,
 };

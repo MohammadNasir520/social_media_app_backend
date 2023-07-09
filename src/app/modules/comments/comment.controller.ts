@@ -11,8 +11,9 @@ const createComment = async (req: Request, res: Response) => {
   });
 };
 
-const getAllComments = async (req: Request, res: Response) => {
-  const result = await CommentService.getAllComments();
+const getAllCommentsOfSinglePost = async (req: Request, res: Response) => {
+  const postId = req.params.id;
+  const result = await CommentService.getAllCommentsOfSinglePost(postId);
   res.status(200).json({
     success: true,
     message: 'Comments retrieved  successfully',
@@ -31,6 +32,6 @@ const getSingleComment = async (req: Request, res: Response) => {
 
 export const CommentController = {
   createComment,
-  getAllComments,
+  getAllCommentsOfSinglePost,
   getSingleComment,
 };
