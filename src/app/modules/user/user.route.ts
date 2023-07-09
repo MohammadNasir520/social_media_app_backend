@@ -4,5 +4,6 @@ const router = express.Router();
 
 router.get('/', UserController.getAllUsers);
 router.get('/:email', UserController.getSingleUserByEmail);
+router.patch('/:id', UserController.updateSingleUser);
 
 export const UserRoutes = router;

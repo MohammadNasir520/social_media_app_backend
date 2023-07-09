@@ -1,11 +1,12 @@
 import mongoose from 'mongoose';
 import app from './app';
+import config from './config';
 
 const port = 5000;
 
 async function dbConnect() {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/social_media_app');
+    await mongoose.connect(config.database_url as string);
     console.log('database is connected');
 
     app.listen(port, () => {

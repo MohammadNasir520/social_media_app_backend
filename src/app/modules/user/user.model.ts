@@ -27,6 +27,12 @@ const userSchema = new Schema<IUser>(
     image: {
       type: String,
     },
+    university: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
     role: {
       type: String,
       default: 'user',

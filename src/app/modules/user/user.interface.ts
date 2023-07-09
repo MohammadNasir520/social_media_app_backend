@@ -4,5 +4,7 @@ export type IUser = {
   password: string;
   confirmPassword: string;
   image?: string;
+  university: string;
+  address: string;
   role: string;
 };
