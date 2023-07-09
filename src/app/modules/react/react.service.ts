@@ -3,13 +3,13 @@ import { IReact } from './react.interface';
 import { React } from './react.model';
 
 const createReact = async (ReactData: IReact): Promise<IReact | undefined> => {
-  const findReact = await React.find({
+  const findReactOfSingleUser = await React.find({
     post: ReactData.post,
     user: ReactData.user,
   });
+  console.log('find React', findReactOfSingleUser.length);
 
-  console.log('find reac', findReact);
-  if (findReact.length <= 0) {
+  if (findReactOfSingleUser.length <= 0) {
     const createReact = await (
       await (await React.create(ReactData)).populate('user')
     ).populate('post');

@@ -1,3 +1,5 @@
+import { SortOrder } from 'mongoose';
+import { paginationHelper } from '../../helpers/paginationHelper';
 import { IPost } from './post.interface';
 import { Post } from './post.model';
 
@@ -6,17 +8,29 @@ const createPost = async (postData: IPost): Promise<IPost> => {
   return createPost;
 };
 
-const getAllPosts = async () => {
-  const result = await Post.find().sort({ createdAt: -1 }).populate('user');
+const getAllPosts = async (paginationOptions: any) => {
+  const { limit, skip, sortBy, sortOrder } =
+    paginationHelper.calculationPagination(paginationOptions);
+
+  const sortConditions: { [key: string]: SortOrder } = {};
+
+  if (sortBy && sortOrder) {
+    sortConditions[sortBy] = sortOrder;
+  }
+
+  const result = await Post.find()
+    .sort(sortConditions)
+    .skip(skip)
+    .limit(limit)
+    .populate('user');
 
   return result;
 };
 const getSinglePost = async (id: string) => {
-  console.log(id);
   const result = await Post.find({ _id: id })
     .sort({ createdAt: -1 })
     .populate('user');
-  console.log(result);
+
   return result;
 };
 export const PostService = {

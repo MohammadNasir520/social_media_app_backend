@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import { PostService } from './post.service';
+import pick from '../../../shared/pick';
+import { paginationFields } from '../../../constants/pagination';
 
 const createPost = async (req: Request, res: Response) => {
   const { ...postData } = req.body;
@@ -11,7 +13,8 @@ const createPost = async (req: Request, res: Response) => {
   });
 };
 const getAllPosts = async (req: Request, res: Response) => {
-  const result = await PostService.getAllPosts();
+  const paginationOptions = pick(req.query, paginationFields);
+  const result = await PostService.getAllPosts(paginationOptions);
   res.status(200).json({
     success: true,
     message: 'Posts retrieved  successfully',
