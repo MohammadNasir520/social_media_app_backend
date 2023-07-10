@@ -26,6 +26,12 @@ const userSchema = new mongoose_1.Schema({
     image: {
         type: String,
     },
+    university: {
+        type: String,
+    },
+    address: {
+        type: String,
+    },
     role: {
         type: String,
         default: 'user',

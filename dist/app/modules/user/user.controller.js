@@ -28,7 +28,18 @@ const getSingleUserByEmail = (req, res) => __awaiter(void 0, void 0, void 0, fun
         data: result,
     });
 });
+const updateSingleUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userData = req.body;
+    const id = req.params.id;
+    const result = yield user_service_1.UserService.updateSingleUser(id, userData);
+    res.status(200).json({
+        success: true,
+        message: 'Post retrieved  successfully',
+        data: result,
+    });
+});
 exports.UserController = {
     getAllUsers,
     getSingleUserByEmail,
+    updateSingleUser,
 };

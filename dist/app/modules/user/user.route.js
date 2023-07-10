@@ -9,4 +9,5 @@ const user_controller_1 = require("./user.controller");
 const router = express_1.default.Router();
 router.get('/', user_controller_1.UserController.getAllUsers);
 router.get('/:email', user_controller_1.UserController.getSingleUserByEmail);
+router.patch('/:id', user_controller_1.UserController.updateSingleUser);
 exports.UserRoutes = router;

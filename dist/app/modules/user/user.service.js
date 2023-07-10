@@ -21,7 +21,15 @@ const getSingleUserByEmail = (email) => __awaiter(void 0, void 0, void 0, functi
     console.log(result);
     return result;
 });
+const updateSingleUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_model_1.User.findOneAndUpdate({ _id: id }, payload, {
+        new: true,
+    });
+    console.log(result);
+    return result;
+});
 exports.UserService = {
     getAllUsers,
     getSingleUserByEmail,
+    updateSingleUser,
 };
